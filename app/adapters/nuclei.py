@@ -32,12 +32,14 @@ class NucleiAdapter(BaseAdapter):
     TEMPLATES_DIR = os.path.expanduser("~/nuclei-templates")
 
     def run(self, asset, config):
-        # nuclei 需加载数千模板：进程超时放宽到 600s；HTTP 级 -timeout 仍用配置的 30s
-        object.__setattr__(config, "timeout_sec", 1800)  # 若 config 可变直接用 config.timeout_sec = 600
-        try:
-            return super().run(asset, config)
-        finally:
-            object.__setattr__(config, "timeout_sec", 30)
+        if not self.check_available():
+            raise ToolNotFoundError(f"{self.tool_name} 未安装")
+        cmd = self.build_cmd(asset, config)
+        self.guard(cmd)
+        code, stdout, _ = self._exec(cmd, timeout_sec=1800)   # 局部值,不动 config
+        if code != 0 and not stdout:
+            return []
+        return self.parse(stdout, asset)
 
 
     _CVE_WORTHY_CMS = {"wordpress", "joomla", "drupal"}

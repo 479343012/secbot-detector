@@ -29,14 +29,6 @@ from app.detectors.vuln import run_vuln
 def scan_vuln(req: ScanRequest):
     return run_vuln(req)
 
-@app.post("/scan/tamper", response_model=ScanResponse)
-def scan_tamper(req: ScanRequest):
-    return ScanResponse(job_id=str(uuid.uuid4()), risks=[])
-
-@app.post("/scan/malware", response_model=ScanResponse)
-def scan_malware(req: ScanRequest):
-    return ScanResponse(job_id=str(uuid.uuid4()), risks=[])
-
 @app.post("/scan/tamper")
 def scan_tamper(req: ScanRequest):
     risks = run_tamper(req.assets, req.config)

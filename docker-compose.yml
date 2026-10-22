@@ -1,0 +1,13 @@
+services:
+  detectors:
+    build: .
+    container_name: detectors
+    ports:
+      - "8001:8001"
+    volumes:
+      # 模板库体积大,建议构建进镜像;网络受限时改挂载宿主: - ./nuclei-templates:/root/nuclei-templates:ro
+      - secbot-data:/root/.secbot          # 篡改基线持久化
+    restart: unless-stopped
+
+volumes:
+  secbot-data:

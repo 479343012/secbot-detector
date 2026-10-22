@@ -214,3 +214,10 @@ secbot-detector/
 - 契约只增不改；任何变更当天同步 A/C 并更新 contracts/ 目录。
 - 联调问题清单三方共享，每条有唯一责任方，先记现象再改代码。
 - 仓库代码即进度：完成一个模块即 commit + push，避免"目录为空"式误会。
+
+
+P0-1 已修：删除重复注册的空路由，新增 tests/test_api.py 做 HTTP 层冒烟（含"每条路径只注册一次"断言），tamper/malware HTTP 实测非空。
+P0-2 已修：根目录 Dockerfile（工具链全装,nuclei/subfinder/katana/gobuster/whatweb/wpscan/testssl）+ docker-compose.yml，docker compose up -d 后 /health tools 全 true。
+P1-3 已修：8086 加固此前未推送（本地 commit 遗漏），现已推送并重新全量评估：recall 100%、fp 0%、PASS，eval_report.json 在仓库里。
+P2-4 已修：删除 Zone.Identifier 并加入 .gitignore。
+观察项 1/3 已采纳修复；观察项 2 回复：leak 记录归 C，B 侧已输出 sensitive_file 资产标记，C 接入后补测试集。

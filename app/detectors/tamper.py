@@ -128,7 +128,7 @@ def run_tamper(assets: list[Asset], config: ScanConfig,
                 "keyword_hits": keyword_hits,
             }, ensure_ascii=False),
             tool="tamper",
-            template="",     # tamper 无模板概念，置空（A 契约中 template 可选）
+            template="tamper:hidden-iframe" if has_hidden_iframe else f"tamper:{feat['sha256'][:8]}",
             signature=make_signature(url, "tamper", title, sig_detail),
             first_seen=now,
             last_seen=now,
