@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="40">
+  <rect width="120" height="40" fill="#3498db" rx="4"/>
+  <text x="60" y="26" fill="#fff" font-size="16"
+        text-anchor="middle" font-family="sans-serif">XX科技</text>
+</svg>

@@ -1,0 +1,103 @@
+{
+  "targets": [
+    {
+      "url": "http://localhost:8081",
+      "note": "DVWA（未认证，仅 3 个可爬端点）",
+      "fingerprint": {
+        "cms": "dvwa"
+      },
+      "expected": [],
+      "clean": false
+    },
+    {
+      "url": "http://localhost:8082",
+      "known_fp": [
+        {
+          "category": "malware",
+          "match": "js-fromcharcode"
+        }
+      ],
+      "note": "WordPress 5.2.4",
+      "fingerprint": {
+        "cms": "wordpress",
+        "version": "5.2.4"
+      },
+      "expected": [
+        {
+          "category": "vuln",
+          "match": "CVE-2022-3590"
+        },
+        {
+          "category": "weak_config",
+          "match": "header:"
+        }
+      ],
+      "clean": false
+    },
+    {
+      "url": "http://localhost:8083",
+      "note": "malware-page",
+      "fingerprint": {
+        "cms": "static"
+      },
+      "expected": [
+        {
+          "category": "malware",
+          "match": "malware:"
+        },
+        {
+          "category": "bad_link",
+          "match": "badlink:"
+        }
+      ],
+      "clean": false
+    },
+    {
+      "url": "http://localhost:8084",
+      "note": "tamper-page（评估时注入隐藏iframe后预期命中）",
+      "fingerprint": {
+        "cms": "static"
+      },
+      "expected": [
+        {
+          "category": "tamper",
+          "match": "tamper:"
+        }
+      ],
+      "tamper_test": true,
+      "clean": false
+    },
+    {
+      "url": "http://localhost:8085",
+      "note": "backup-files（.env.bak 等）——备份泄漏检测器（步骤15）未实现，暂不计入指标，实现后加回",
+      "fingerprint": {
+        "cms": "static"
+      },
+      "expected": [],
+      "clean": false
+    },
+    {
+      "url": "https://localhost:8443",
+      "note": "https 弱配置靶机",
+      "fingerprint": {
+        "cms": "static"
+      },
+      "expected": [
+        {
+          "category": "weak_config",
+          "match": "cert_chain_of_trust"
+        }
+      ],
+      "clean": false
+    },
+    {
+      "url": "http://localhost:8086",
+      "note": "normal-page 对照组",
+      "expected": [],
+      "fingerprint": {
+        "cms": "static"
+      },
+      "clean": true
+    }
+  ]
+}

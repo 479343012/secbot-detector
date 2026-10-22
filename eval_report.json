@@ -1,0 +1,30 @@
+{
+  "recall": 1.0,
+  "fp_rate": 0.4,
+  "tp": 6,
+  "missed": [],
+  "false_positives": [
+    {
+      "target": "http://localhost:8086",
+      "title": "HTTP Missing Security Headers",
+      "category": "Category.vuln"
+    },
+    {
+      "target": "http://localhost:8086",
+      "title": "HTTP Missing Security Headers",
+      "category": "Category.vuln"
+    },
+    {
+      "target": "http://localhost:8086",
+      "title": "HTTP Missing Security Headers",
+      "category": "Category.vuln"
+    },
+    {
+      "target": "http://localhost:8086",
+      "title": "HTTP Missing Security Headers",
+      "category": "Category.vuln"
+    }
+  ],
+  "errors": [],
+  "records_total": 128
+}
